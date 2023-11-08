@@ -9,6 +9,11 @@ import (
 	"github.com/bryo13/wand/assets/templates/files"
 )
 
+const (
+	colorBlue string = "\033[0;34m"
+	colorRed  string = "\033[0;31m"
+)
+
 var (
 	mini        int
 	projectName string
@@ -16,10 +21,11 @@ var (
 )
 
 func init() {
-	fmt.Println("Welcome to wand!")
-	fmt.Println("Checking if go is installed")
+	fmt.Println(colorBlue + "* Welcome to wand!")
+	fmt.Println(colorBlue + "* Checking if go is installed")
+
 	if !isGoInstalled() {
-		fmt.Println("please install Go from 'https://go.dev/doc/install'")
+		fmt.Println(colorRed + "please install Go from 'https://go.dev/doc/install'")
 		os.Exit(1)
 	}
 }
@@ -33,19 +39,18 @@ func isGoInstalled() bool {
 	if err != nil {
 		return false
 	}
-	fmt.Println("Go lives in ", path)
+	fmt.Println(colorBlue+"* Go lives in ", path)
 	return true
 }
 
 func main() {
-
-	fmt.Print("Project name: ")
+	fmt.Print(colorBlue + "Project name: ")
 	fmt.Scanf("%s", &projectName)
 
-	fmt.Print("mod init: ")
+	fmt.Print(colorBlue + "mod init: ")
 	fmt.Scanf("%s", &modTitle)
 
-	fmt.Print("Choose dir type 1 for mini: ")
+	fmt.Print(colorBlue + "Choose dir type 1 for mini: ")
 	fmt.Scanf("%d", &mini)
 	if mini == 1 {
 		dirs.CreateHomeDir(projectName)
