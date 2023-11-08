@@ -6,11 +6,13 @@ import (
 	"os/exec"
 
 	"github.com/bryo13/wand/assets/templates/dirs"
+	"github.com/bryo13/wand/assets/templates/files"
 )
 
 var (
 	mini        int
 	projectName string
+	modTitle    string
 )
 
 func init() {
@@ -34,15 +36,21 @@ func isGoInstalled() bool {
 	fmt.Println("Go lives in ", path)
 	return true
 }
+
 func main() {
 
-	fmt.Print("Project name ")
+	fmt.Print("Project name: ")
 	fmt.Scanf("%s", &projectName)
 
-	fmt.Print("Choose dir type 1: mini ")
+	fmt.Print("mod init: ")
+	fmt.Scanf("%s", &modTitle)
+
+	fmt.Print("Choose dir type 1 for mini: ")
 	fmt.Scanf("%d", &mini)
 	if mini == 1 {
 		dirs.CreateHomeDir(projectName)
 		dirs.CreateMiniDirs(projectName)
+		files.AddMainFile(projectName)
+		files.AddModFile(projectName, modTitle)
 	}
 }
