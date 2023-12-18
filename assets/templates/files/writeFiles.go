@@ -15,7 +15,7 @@ func main() {
 `
 
 // AddMainFile takes the project name and creates a main file
-func AddMainFile(projectName string) {
+func addMainFile(projectName string) {
 	name := fmt.Sprintf("%s/%s/%s", projectName, "cmd", "main.go")
 	// If the file doesn't exist, create it, or append to the file
 	f, err := os.OpenFile(name, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
@@ -32,7 +32,7 @@ func AddMainFile(projectName string) {
 }
 
 // AddModFile takes a project name and mod name and creates the a mod file
-func AddModFile(projectName string, modTitle string) {
+func addModFile(projectName string, modTitle string) {
 	version := runtime.Version()
 
 	// adds a space between go and version number
@@ -57,4 +57,9 @@ func AddModFile(projectName string, modTitle string) {
 	if err := f.Close(); err != nil {
 		fmt.Println(fmt.Errorf("could not close mod file due to: %q", err))
 	}
+}
+
+func WriteFiles(rootPath string, modTitle string) {
+	addMainFile(rootPath)
+	addModFile(rootPath, modTitle)
 }
