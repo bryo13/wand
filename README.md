@@ -1,2 +1,2 @@
 # wand
-Golang directory generator tool 
+Golang directory generator tool, cargo for golang
